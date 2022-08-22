@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./index.css">
+  </head>
+  <body>
+    <div id='yybear_pop'>
+      <canvas id="yylive_bear"></canvas>
+    </div>
+  </body>
+  <script>
+    // canvas画布
+    var canvas = document.getElementById('yylive_bear')
+    var ctx = canvas.getContext('2d')
+
+    // 一个圆
+    // ctx.beginPath()
+    // ctx.arc(100, 75, 50, 0, 2 * Math.PI)
+    // ctx.stroke()
+    fillOval(ctx, 100, 75, 50, 35, 'yellow')
+
+    // 一个圆
+    // ctx.beginPath()
+    // ctx.arc(110, 65, 30, 0, 2 * Math.PI)
+    // ctx.stroke()
+    fillOval(ctx, 110, 65, 30, 20)
+
+    function fillOval(context, x, y, a, b, fillColor) {
+      context.save()
+      var r = (a > b) ? a : b
+      var ratioX = a / r
+      var ratioY = b / r
+      
+      context.scale(ratioX, ratioY)
+      context.beginPath()
+      context.arc(x / ratioX, y / ratioY, r, 0, 2 * Math.PI, false)
+      context.stroke()
+      context.fillStyle = fillColor
+      context.closePath()
+      context.restore()
+    }
+  </script>
+</html>

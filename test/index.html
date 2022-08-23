@@ -17,13 +17,23 @@
     // ctx.beginPath()
     // ctx.arc(100, 75, 50, 0, 2 * Math.PI)
     // ctx.stroke()
-    fillOval(ctx, 100, 75, 50, 35, 'yellow')
+    // fillOval(ctx, 100, 75, 50, 35, '#FFE652')
+    fillGradientOval(ctx, 100, 75, 50, 35, [
+      {
+        pro: 0,
+        color: '#FFE652'
+      },
+      {
+        pro: 1,
+        color: '#FCD21C'
+      }
+    ])
 
     // 一个圆
     // ctx.beginPath()
     // ctx.arc(110, 65, 30, 0, 2 * Math.PI)
     // ctx.stroke()
-    fillOval(ctx, 110, 65, 30, 20)
+    fillOval(ctx, 110, 65, 30, 20, '#85491E')
 
     function fillOval(context, x, y, a, b, fillColor) {
       context.save()
@@ -34,10 +44,42 @@
       context.scale(ratioX, ratioY)
       context.beginPath()
       context.arc(x / ratioX, y / ratioY, r, 0, 2 * Math.PI, false)
-      context.stroke()
       context.fillStyle = fillColor
+      context.fill()
       context.closePath()
       context.restore()
     }
+
+    function fillGradientOval(context, x, y, a, b, options) {
+      context.save()
+      var r = (a > b) ? a : b
+      var ratioX = a / r
+      var ratioY = b / r
+
+      context.scale(ratioX, ratioY)
+      context.beginPath()
+      context.arc(x / ratioX, y / ratioY, r, 0 , 2 * Math.PI, false)
+
+      var gradient = context.createLinearGradient(x, y, x + r, y + r)
+
+      for (let i = 0; i < options.length; i++) {
+        gradient.addColorStop(options[i].pro, options[i].color)
+      }
+
+      context.fillStyle = gradient
+      context.fill()
+      context.closePath()
+      context.restore()
+    }
+  </script>
+
+  <script>
+    /**
+     * stroke 描边
+     * fill 填充
+     * fillStyle 填充颜色
+     * save 保存默认状态
+     * restore 恢复默认状态
+     * */
   </script>
 </html>

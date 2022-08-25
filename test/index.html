@@ -17,10 +17,22 @@
     bearFace()
     function bearFace() {
       ctx.save()
+      ctx.beginPath()
       ctx.moveTo(20, 115)
+      // ctx.bezierCurveTo(
+      //   //控制点1
+      //   700,1000,
+      //   //控制点2
+      //   950,1150,
+      //   //结束点
+      //   1150,1150
+      // )
       ctx.bezierCurveTo(35, 140, 115, 140, 130, 115)
-
-      ctx.bezierCurveTo(35, 140, 115, 140, 130, 115)
+      ctx.bezierCurveTo(130, 115, 165, 85, 80, 38)
+      ctx.bezierCurveTo(80, 38, 0, 75, 20, 115)
+      // ctx.quadraticCurveTo( 300, 0, 172, 157 )
+      // ctx.bezierCurveTo(300, 110, 0, 0, 115, 0)
+      // ctx.arc(15, 115, 50, 0, 2 * Math.PI, false)
       ctx.stroke()
     }
     // 一个圆
@@ -44,7 +56,7 @@
     // ctx.beginPath()
     // ctx.arc(110, 65, 30, 0, 2 * Math.PI)
     // ctx.stroke()
-    fillOval(ctx, 110, 65, 30, 20, '#85491E')
+    // fillOval(ctx, 110, 65, 30, 20, '#85491E')
 
     function fillOval(context, x, y, a, b, fillColor) {
       context.save()

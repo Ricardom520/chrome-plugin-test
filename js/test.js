@@ -50,9 +50,10 @@ var YYLiveBear = (function() {
 
       canvas.addEventListener('click', () => {
         console.log('点击了')
-        parent.postMessage({
-          val: 'chrome插件测试'
-        }, 'https://www.yy.com')
+        // parent.postMessage({
+        //   val: 'chrome插件测试'
+        // }, 'https://www.yy.com')
+        // window.location.href = 'https://www.yy.com/u/54552'
       })
 
       // 画脸
@@ -139,7 +140,13 @@ var YYLiveBear = (function() {
       // 鼻子
       mouse()
       function mouse() {
-        
+        ctx.save()
+        ctx.moveTo(74, 114)
+        ctx.beginPath()
+        ctx.bezierCurveTo(74, 114, 80, 124, 88, 114)
+        ctx.closePath()
+        fillColor(ctx, '#8D4F1F')
+        ctx.restore()
       }
       
       // 填充过渡颜色

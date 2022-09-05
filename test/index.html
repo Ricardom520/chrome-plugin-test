@@ -104,21 +104,54 @@
       ctx.save()
       // ellipseOne(ctx, 102, 89, 10, 13, '#FFF')
       // fillEllipseOne(ctx, 102, 89, 10, 13, '#FFF')
-      ctx.beginPath()
-      var k = .5522848
-      var ox = 10 * k // 水平控制点偏移量
-      var oy = 13 * k // 垂直控制点偏移量
-      // // 从椭圆的左端点开始顺时针绘制四条三次贝塞尔曲线
-      ctx.moveTo(92, 89)
-      ctx.bezierCurveTo(92, 89 - oy, 102 - ox, 76, 102, 76)
-      ctx.bezierCurveTo(102 + ox, 76, 112, 89 - oy, 112, 89)
-      ctx.bezierCurveTo(112, 89 + oy, 102 + ox, 102, 102, 102)
-      ctx.bezierCurveTo(102 - ox, 102, 92, 89 + oy, 92, 89)
-      ctx.closePath()
-      ctx.fillStyle = '#fff'
-      ctx.fill()
-      ellipseOne(ctx, 102, 89, 8, 10, '#8D4F1F')
-      ellipseOne(ctx, 104, 87, 3, 4, '#fff')
+      
+
+      var angle = 25
+      var centerX = 102
+      var centerY = 89
+      var ampl = 23
+      var flag = true
+      var test = 14
+
+      function paint() {
+        if (test === 0) {
+          flag = false
+        } else if (test === 14) {
+          flag = true
+        }
+
+        if (flag) {
+          test--
+        } else {
+          test++
+        }
+        ctx.beginPath()
+        var k = .5522848
+        var ox = 10 * k // 水平控制点偏移量
+        var oy = 13 * k // 垂直控制点偏移量
+        // // 从椭圆的左端点开始顺时针绘制四条三次贝塞尔曲线
+        ctx.moveTo(92, 89)
+        ctx.bezierCurveTo(92, 89 - oy, 102 - ox, 76, 102, 76)
+        ctx.bezierCurveTo(102 + ox, 76, 112, 89 - oy, 112, 89)
+        ctx.bezierCurveTo(112, 89 + oy, 102 + ox, 102, 102, 102)
+        ctx.bezierCurveTo(102 - ox, 102, 92, 89 + oy, 92, 89)
+        ctx.fillStyle = '#fff'
+        ctx.fill()
+        ellipseOne(ctx, 102, 89, 8, 10, '#8D4F1F')
+        ellipseOne(ctx, 104, 87, 3, 4, '#fff')
+        ctx.beginPath()
+        ctx.strokeStyle = '#8D4F1F'
+        for (var i = 0; i < angle; i++) {
+          ctx.moveTo(centerX-angle/2+i,centerY-test);
+          ctx.lineTo(centerX-angle/2+i, centerY-(Math.floor(Math.sin(Math.PI*i/angle) * ampl)));
+          ctx.moveTo(centerX-angle/2+i,centerY+test);
+          ctx.lineTo(centerX-angle/2+i,centerY+(Math.floor(Math.sin(Math.PI*i/angle) * ampl)));
+          ctx.stroke();
+        }
+        ctx.closePath()
+      }
+      paint()
+      // setInterval(paint, 50)
       ctx.restore()
     }
 
